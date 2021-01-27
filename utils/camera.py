@@ -72,16 +72,17 @@ def open_cam_rtsp(uri, width, height, latency):
         raise RuntimeError('H.264 decoder not found!')
     return cv2.VideoCapture(gst_str, cv2.CAP_GSTREAMER)
 
-
-def open_cam_usb(dev, width, height):
+#def open_cam_usb(dev, width, height):
+def open_cam_usb(dev):
     """Open a USB webcam."""
-    if USB_GSTREAMER:
-        gst_str = ('v4l2src device=/dev/video{} ! '
-                   'video/x-raw, width=(int){}, height=(int){} ! '
-                   'videoconvert ! appsink').format(dev, width, height)
-        return cv2.VideoCapture(gst_str, cv2.CAP_GSTREAMER)
-    else:
-        return cv2.VideoCapture(dev)
+    return cv2.VideoCapture(dev, cv2.CAP_GSTREAMER)
+    #if USB_GSTREAMER:
+    #    gst_str = ('v4l2src device=/dev/video{} ! '
+    #              'video/x-raw, width=(int){}, height=(int){} ! '
+    #               'videoconvert ! appsink').format(dev, width, height)
+    #    return cv2.VideoCapture(gst_str, cv2.CAP_GSTREAMER)
+    #else:
+    #    return cv2.VideoCapture(dev)
 
 
 def open_cam_onboard(width, height):
@@ -176,7 +177,8 @@ class Camera():
             self._start()
         elif a.usb is not None:
             logging.info('Camera: using USB webcam /dev/video%d' % a.usb)
-            self.cap = open_cam_usb(a.usb, a.width, a.height)
+	    #self.cap = open_cam_usb(a.usb, a.width, a.height)
+            self.cap = open_cam_usb(a.usb)
             self._start()
         elif a.onboard is not None:
             logging.info('Camera: using Jetson onboard camera')
