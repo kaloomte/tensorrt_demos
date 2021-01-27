@@ -7,7 +7,7 @@ import numpy
 
 library_dirs = [
     '/usr/local/cuda/lib64',
-    '/usr/local/TensorRT-7.1.3.4/lib',  # for my x86_64 PC
+    '/usr/local/TensorRT-7.1.3.0/lib',  # for my x86_64 PC
     '/usr/local/lib',
 ]
 
@@ -27,7 +27,7 @@ include_dirs = [
     # '-I/usr/local/lib/python3.6/dist-packages/numpy/core/include',
     '-I' + numpy.__path__[0] + '/core/include',
     '-I/usr/local/cuda/include',
-    '-I/usr/local/TensorRT-7.1.3.4/include',  # for my x86_64 PC
+    '-I/usr/local/TensorRT-7.1.3.0/include',  # for my x86_64 PC
     '-I/usr/local/include',
 ]
 

@@ -165,7 +165,7 @@ def main():
         '-v', '--verbose', action='store_true',
         help='enable verbose output (for debugging)')
     parser.add_argument(
-        '-c', '--category_num', type=int, default=80,
+        '-c', '--category_num', type=int, default=2,
         help='number of object categories [80]')
     parser.add_argument(
         '-m', '--model', type=str, required=True,

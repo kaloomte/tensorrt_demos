@@ -148,8 +148,7 @@ class DarkNetParser(object):
         layer_dict = dict(type=layer_type)
         if layer_type in self.supported_layers:
             for param_line in layer_param_lines:
-                param_line = param_line.lstrip().split('#')[0]
-                if not param_line:
+                if param_line[0] == '#':
                     continue
                 param_type, param_value = self._parse_params(param_line)
                 layer_dict[param_type] = param_value
@@ -867,7 +866,7 @@ def main():
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '-c', '--category_num', type=int, default=80,
+        '-c', '--category_num', type=int, default=2,
         help='number of object categories [80]')
     parser.add_argument(
         '-m', '--model', type=str, required=True,
